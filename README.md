@@ -1,2 +1,6 @@
 # BodyBuildingHub
-Project for IT5007 lecture
+This is the team project for IT5007 lecture.
+
+# Running instructions
+TODO
+
