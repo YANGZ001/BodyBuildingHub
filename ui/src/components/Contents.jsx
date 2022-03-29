@@ -3,7 +3,6 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 
 import Diet from './Diet.jsx';
 import Motivation from './Motivation.jsx';
-import SearchBar from './SearchBar.jsx';
 import Tracker from './Tracker.jsx';
 import Train from './Train.jsx';
 import Home from './Home.jsx';

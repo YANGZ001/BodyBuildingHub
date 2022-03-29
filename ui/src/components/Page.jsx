@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Contents from './Contents.jsx';
+import SearchBar from './SearchBar.jsx';
 
 function NavBar() {
   return (
@@ -24,6 +25,7 @@ export default function Page() {
 			<h1>Welcome to the Body building hub!</h1>
 			<br/>
       <NavBar />
+			<SearchBar />
       <Contents />
     </div>
   );
