@@ -4,7 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { HashRouter as Router } from 'react-router-dom';
 
-import Page from './components/Page.jsx';
+import Page from './Page.jsx';
 
 const element = (
   <Router>
@@ -17,4 +17,3 @@ ReactDOM.render(element, document.getElementById('contents'));
 if (module.hot) {
   module.hot.accept();
 }
-

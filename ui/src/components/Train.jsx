@@ -2,10 +2,10 @@
 
 import React from 'react';
 
-export default class SearchBar extends React.Component {
+export default class Train extends React.Component {
   render() {
     return (
-      <div>This is a placeholder for SearchBar component.</div>
+      <div>This is a placeholder for Train component.</div>
     );
   }
 }
