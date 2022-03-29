@@ -6,7 +6,7 @@ import SearchBar from './SearchBar.jsx';
 function NavBar() {
   return (
     <nav>
-      <a href="/">Home</a>
+      <a href="/#/home">Home</a>
       {' | '}
       <a href="/#/train">Train</a>
       {' | '}
