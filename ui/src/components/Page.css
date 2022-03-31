@@ -1,3 +1,27 @@
 body {
-  background-color: purple;
+  background-color: #ebebeb;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.title {
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+nav {
+  float: right;
+  margin: 10px;
+}
+
+nav a {
+  padding: 14px 16px;
+}
+nav a:hover {
+  background-color: #ddd;
 }

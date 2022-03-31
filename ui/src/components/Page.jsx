@@ -24,9 +24,10 @@ function NavBar() {
 export default function Page() {
   return (
     <div>
-      <h1>Welcome to the Body building hub!</h1>
-      <br />
-      <NavBar />
+      <div className="header container">
+        <h1 className="title">Body-Building Hub</h1>
+        <NavBar />
+      </div>
       <SearchBar />
       <Contents />
     </div>

@@ -1,0 +1,7 @@
+.ui.search input.prompt {
+  border-radius: 0.5rem;
+}
+
+div .ui.search {
+  background-color: aliceblue;
+}
