@@ -1,3 +1,11 @@
 .hide {
   display: none;
 }
+
+.video.container {
+  display: block;
+  justify-content: center;
+  width: 50%;
+  padding-left: 200px;
+  margin-left: 200px;
+}

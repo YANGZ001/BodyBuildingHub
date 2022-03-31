@@ -10,7 +10,7 @@ export default class Train extends React.Component {
     return (
       <div>
         <SearchBar />
-        This is a placeholder for Train component.
+
         <br />
         <VideoList />
         <br />

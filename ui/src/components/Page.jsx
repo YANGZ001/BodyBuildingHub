@@ -1,11 +1,11 @@
 import React, { useState } from "react";
+import { withRouter } from "react-router-dom";
 
 import Contents from "./Contents.jsx";
-import SearchBar from "./SearchBar.jsx";
 
 import "./Page.css";
 
-function NavBar(props) {
+function NavBar() {
   const [activePage, setActivePage] = useState(1);
   const navData = [
     {
@@ -64,9 +64,13 @@ export default function Page() {
     <div>
       <div className="header container">
         <h1 className="title">Body-Building Hub</h1>
-        <NavBar ActivePage="1" />
+        <NavBar />
       </div>
-      <Contents />
+      <div className="contents container">
+        <center>
+          <Contents />
+        </center>
+      </div>
     </div>
   );
 }

@@ -1,7 +1,14 @@
 .ui.search input.prompt {
   border-radius: 0.5rem;
+  width: 100%;
+}
+
+div .ui.icon.input {
+  background-color: aliceblue;
+  width: 100%;
 }
 
 div .ui.search {
   background-color: aliceblue;
+  width: 700px;
 }

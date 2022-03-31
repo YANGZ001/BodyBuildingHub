@@ -67,15 +67,17 @@ export default class VideoList extends React.Component {
           .map((key) => key.contentDetails)
           .map((key) => {
             return (
-              <iframe
-                width="560"
-                height="315"
-                src={`https://www.youtube.com/embed/${key.videoId}`}
-                title="YouTube video player"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-              ></iframe>
+              <div className="video container">
+                <iframe
+                  width="800"
+                  height="450"
+                  src={`https://www.youtube.com/embed/${key.videoId}`}
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                ></iframe>
+              </div>
             );
           })}
       </div>

@@ -2,11 +2,16 @@ body {
   background-color: #ebebeb;
 }
 
-.container {
+.header.container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px;
+}
+
+.contents.container {
+  display: block;
+  justify-content: space-evenly;
 }
 
 .title {
