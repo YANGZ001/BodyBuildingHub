@@ -17,11 +17,18 @@ body {
 nav {
   float: right;
   margin: 10px;
+  display: flex;
 }
 
 nav a {
+  display: flex;
   padding: 14px 16px;
 }
 nav a:hover {
   background-color: #ddd;
+}
+
+nav a#active {
+  background-color: #04aa6d;
+  color: white;
 }
