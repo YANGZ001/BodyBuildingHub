@@ -6,6 +6,7 @@ import Motivation from "./Motivation.jsx";
 import Tracker from "./Tracker.jsx";
 import Train from "./Train.jsx";
 import Home from "./Home.jsx";
+import Setting from "./Setting.jsx";
 
 const NotFound = () => <h1>Page Not Found</h1>;
 
