@@ -26,9 +26,5 @@ This is the team project for IT5007 lecture.
 
 `npm install && npm run compile && npm start`
 
-3. Run the API server
-
-`cd ../api`
-
-`npm install && npm start`
+5. The server will run on [http://localhost:8000](http://localhost:8000).
 
