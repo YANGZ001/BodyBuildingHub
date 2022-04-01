@@ -1,4 +1,6 @@
+import { func } from "prop-types";
 import React, { useState } from "react";
+import ShowTheLocation from "./ShowTheLocation.jsx";
 import { withRouter } from "react-router-dom";
 
 import Contents from "./Contents.jsx";
@@ -68,6 +70,7 @@ export default function Page() {
       </div>
       <div className="contents container">
         <center>
+          <ShowTheLocation />
           <Contents />
         </center>
       </div>

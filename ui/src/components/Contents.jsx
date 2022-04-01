@@ -1,11 +1,11 @@
-import React from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import React from "react";
+import { Switch, Route, Redirect } from "react-router-dom";
 
-import Diet from './Diet.jsx';
-import Motivation from './Motivation.jsx';
-import Tracker from './Tracker.jsx';
-import Train from './Train.jsx';
-import Home from './Home.jsx';
+import Diet from "./Diet.jsx";
+import Motivation from "./Motivation.jsx";
+import Tracker from "./Tracker.jsx";
+import Train from "./Train.jsx";
+import Home from "./Home.jsx";
 
 const NotFound = () => <h1>Page Not Found</h1>;
 
@@ -22,4 +22,3 @@ export default function Contents() {
     </Switch>
   );
 }
-
