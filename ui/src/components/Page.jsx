@@ -40,6 +40,12 @@ function NavBar() {
       link: 5,
       ref: "/#/tracker",
     },
+    {
+      title: "Setting",
+      icon: <i className="cog icon" />,
+      link: 6,
+      ref: "/#/setting",
+    },
   ];
   return (
     <nav>
