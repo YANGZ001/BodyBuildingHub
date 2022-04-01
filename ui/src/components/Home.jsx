@@ -12,7 +12,6 @@ export default class Home extends React.Component {
         <p>This is a placeholder for Home component.</p>
         <Statistics />
         {/* <VideoList /> */}
-        <Setting />
       </div>
     );
   }

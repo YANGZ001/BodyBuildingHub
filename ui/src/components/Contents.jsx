@@ -1,11 +1,12 @@
-import React from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import React from "react";
+import { Switch, Route, Redirect } from "react-router-dom";
 
-import Diet from './Diet.jsx';
-import Motivation from './Motivation.jsx';
-import Tracker from './Tracker.jsx';
-import Train from './Train.jsx';
-import Home from './Home.jsx';
+import Diet from "./Diet.jsx";
+import Motivation from "./Motivation.jsx";
+import Tracker from "./Tracker.jsx";
+import Train from "./Train.jsx";
+import Home from "./Home.jsx";
+import Setting from "./Setting.jsx";
 
 const NotFound = () => <h1>Page Not Found</h1>;
 
@@ -18,6 +19,7 @@ export default function Contents() {
       <Route path="/motivation" component={Motivation} />
       <Route path="/tracker" component={Tracker} />
       <Route path="/train" component={Train} />
+      <Route path="/setting" component={Setting} />
       <Route component={NotFound} />
     </Switch>
   );
