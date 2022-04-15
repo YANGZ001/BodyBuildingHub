@@ -28,3 +28,6 @@ This is the team project for IT5007 lecture.
 
 5. The server will run on [http://localhost:8000](http://localhost:8000).
 
+6. Run the API server
+
+
