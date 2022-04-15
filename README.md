@@ -28,8 +28,12 @@ This is the team project for IT5007 lecture.
 
 5. The server will run on [http://localhost:8000](http://localhost:8000).
 
-6. Run the API server
+6. Execute the api server
 
 `cd api`
+
+7. test 01
+
+8. ZY test 02
 
 
