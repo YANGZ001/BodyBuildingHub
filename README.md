@@ -30,4 +30,6 @@ This is the team project for IT5007 lecture.
 
 6. Run the API server
 
+`cd api`
+
 
