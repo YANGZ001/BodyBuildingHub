@@ -3,42 +3,45 @@
 import React from "react";
 import Statistics from "./Statistics.jsx"
 import TrainLog from "./TrainLog.jsx"
-
-const initialLogs = [
-{
-id: 1, type: "Barbell Deadleft", 
-reps: "10", unit: "lb", 
-note: "I feel good", 
-created: new Date("2018-08-15"),
-},
-{
-id: 2, type: "Pushup", 
-reps: "10", unit: "",
-note: "I can do more", 
-created: new Date("2022-04-01"),
-},
-{
-id: 3, type: "Pushup",
-reps: "15", unit: "",
-note: "Enough for today", 
-created: new Date("2022-04-01"),
-},
-];
+import graphQLFetch from './graphQLFetch.js';
+import LogAdd from './LogAdd.jsx';
 
 export default class Tracker extends React.Component {
 	constructor() {
 		super();
 		this.state = { logs: [] };
+		this.createLog = this.createLog.bind(this);
 	}
 
 	componentDidMount() {
 		this.loadData();
 	}
 
-	loadData() {
-		setTimeout(() => {
-				this.setState({ logs: initialLogs });
-				}, 500);
+	async loadData() {
+		const query = `query {
+			logList {
+				id type reps unit 
+				note created
+			}
+		}`;
+
+		const data = await graphQLFetch(query);
+		if (data) {
+			this.setState({ logs: data.logList });
+		}
+	}
+
+	async createLog(log) {
+		const query = `mutation logAdd($log: LogInputs!) {
+			logAdd(log: $log) {
+				id
+			}
+		}`;
+
+		const data = await graphQLFetch(query, { log });
+		if (data) {
+			this.loadData();
+		}
 	}
 
 	render() {
@@ -47,11 +50,7 @@ export default class Tracker extends React.Component {
 				This is a placeholder for Tracker component.
 				<Statistics />
 				<br />
-				<div class="btn-group" role="group" aria-label="Basic mixed styles example">
-					<button type="button" class="btn btn-success">Add</button>
-					<button type="button" class="btn btn-warning">Edit</button>
-					<button type="button" class="btn btn-danger">Delete</button>
-				</div>
+				<LogAdd createLog={this.createLog} />
 				<TrainLog logs={this.state.logs}/>
 				</div>
 			   );

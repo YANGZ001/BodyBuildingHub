@@ -12,37 +12,38 @@
 /* global db print */
 /* eslint no-restricted-globals: "off" */
 
-db.issues.remove({});
+db.logs.remove({});
 
-const issuesDB = [
-  {
-    id: 1,
-    status: 'New',
-    owner: 'Ravan',
-    effort: 5,
-    created: new Date('2019-01-15'),
-    due: undefined,
-    title: 'Error in console when clicking Add',
-  },
-  {
-    id: 2,
-    status: 'Assigned',
-    owner: 'Eddie',
-    effort: 14,
-    created: new Date('2019-01-16'),
-    due: new Date('2019-02-01'),
-    title: 'Missing bottom border on panel',
-  },
+const initialLogsDB = [
+{
+id: 1, type: "Barbell Deadleft", 
+reps: "10", unit: "lb", 
+note: "I feel good", 
+created: new Date("2018-08-15"),
+},
+{
+id: 2, type: "Pushup", 
+reps: "10", unit: "",
+note: "I can do more", 
+created: new Date("2022-04-01"),
+},
+{
+id: 3, type: "Pushup",
+reps: "15", unit: "",
+note: "Enough for today", 
+created: new Date("2022-04-01"),
+},
 ];
 
-db.issues.insertMany(issuesDB);
-const count = db.issues.count();
-print('Inserted', count, 'issues');
+db.logs.insertMany(initialLogsDB);
+const count = db.logs.count();
+print('Inserted', count, 'train logs');
 
-db.counters.remove({ _id: 'issues' });
-db.counters.insert({ _id: 'issues', current: count });
+db.counters.remove({ _id: 'logs' });
+db.counters.insert({ _id: 'logs', current: count });
 
-db.issues.createIndex({ id: 1 }, { unique: true });
-db.issues.createIndex({ status: 1 });
-db.issues.createIndex({ owner: 1 });
-db.issues.createIndex({ created: 1 });
+db.logs.createIndex({ id: 1 }, { unique: true });
+db.logs.createIndex({ type: 1 });
+db.logs.createIndex({ note: 1 });
+db.logs.createIndex({ created: 1 });
+

@@ -6,11 +6,9 @@ const { GraphQLScalarType } = require('graphql');
 const { Kind } = require('graphql/language');
 const { MongoClient } = require('mongodb');
 
-const url = process.env.DB_URL || 'mongodb://localhost/issuetracker';
+const url = process.env.DB_URL || 'mongodb://localhost/bbh';
 
 let db;
-
-let aboutMessage = 'Issue Tracker API v1.0';
 
 const GraphQLDate = new GraphQLScalarType({
   name: 'GraphQLDate',
@@ -31,14 +29,9 @@ const GraphQLDate = new GraphQLScalarType({
   },
 });
 
-function setAboutMessage(_, { message }) {
-  aboutMessage = message;
-  return aboutMessage;
-}
-
-async function issueList() {
-  const issues = await db.collection('issues').find({}).toArray();
-  return issues;
+async function logList() {
+  const logs = await db.collection('logs').find({}).toArray();
+  return logs;
 }
 
 async function getNextSequence(name) {
@@ -50,29 +43,23 @@ async function getNextSequence(name) {
   return result.value.current;
 }
 
-function issueValidate(issue) {
+function logValidate(log) {
   const errors = [];
-  if (issue.title.length < 3) {
-    errors.push('Field "title" must be at least 3 characters long.');
-  }
-  if (issue.status === 'Assigned' && !issue.owner) {
-    errors.push('Field "owner" is required when status is "Assigned"');
-  }
   if (errors.length > 0) {
     throw new UserInputError('Invalid input(s)', { errors });
   }
 }
 
-async function issueAdd(_, { issue }) {
-  issueValidate(issue);
-  const newIssue = Object.assign({}, issue);
-  newIssue.created = new Date();
-  newIssue.id = await getNextSequence('issues');
+async function logAdd(_, { log }) {
+  logValidate(log);
+  const newLog = Object.assign({}, log);
+  newLog.created = new Date();
+  newLog.id = await getNextSequence('logs');
 
-  const result = await db.collection('issues').insertOne(newIssue);
-  const savedIssue = await db.collection('issues')
+  const result = await db.collection('logs').insertOne(newLog);
+  const savedLog = await db.collection('logs')
     .findOne({ _id: result.insertedId });
-  return savedIssue;
+  return savedLog;
 }
 
 async function connectToDb() {
@@ -84,12 +71,10 @@ async function connectToDb() {
 
 const resolvers = {
   Query: {
-    about: () => aboutMessage,
-    issueList,
+    logList,
   },
   Mutation: {
-    setAboutMessage,
-    issueAdd,
+    logAdd,
   },
   GraphQLDate,
 };
@@ -121,3 +106,4 @@ const port = process.env.API_SERVER_PORT || 3000;
     console.log('ERROR:', err);
   }
 }());
+
