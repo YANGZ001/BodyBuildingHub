@@ -24,20 +24,49 @@ export default class LogAdd extends React.Component {
 
 	render() {
 		return (
-				<div>
-					<form name="logAdd" onSubmit={this.handleSubmit}>
-					<input type="text" name="type" placeholder="type" />
-					<input type="text" name="reps" placeholder="reps" />
-					<input type="text" name="unit" placeholder="unit" />
-					<input type="text" name="note" placeholder="note" />
-					<button type="submit">Add</button>
-					</form>
-					<div class="btn-group" role="group" aria-label="Basic mixed styles example">
-					<button type="button" class="btn btn-success">Add</button>
-					<button type="button" class="btn btn-warning">Edit</button>
-					<button type="button" class="btn btn-danger">Delete</button>
+				<form name="logAdd" class="row g-3">
+					<div class="col-md-3 ">
+						<div class="col-auto">
+							<label for="type" class="col-form-label">Type</label>
+						</div>
+						<div class="col-auto">
+						<input type="text" id="type" class="form-control" aria-describedby="inputType"/>
+						</div>
 					</div>
-				</div>
+
+					<div class="col-md-3 ">
+						<div class="col-auto">
+							<label for="type" class="col-form-label">Reps</label>
+						</div>
+						<div class="col-auto">
+						<input type="text" id="reps" class="form-control" aria-describedby="inputType"/>
+						</div>
+					</div>
+
+					<div class="col-md-3 ">
+						<div class="col-auto">
+							<label for="type" class="col-form-label">Unit</label>
+						</div>
+						<div class="col-auto">
+						<input type="text" id="unit" class="form-control" aria-describedby="inputType"/>
+						</div>
+					</div>
+
+					<div class="col-md-3 ">
+						<div class="col-auto">
+							<label for="type" class="col-form-label">Note</label>
+						</div>
+						<div class="col-auto">
+						<input type="text" id="note" class="form-control" aria-describedby="inputType"/>
+						</div>
+					</div>
+
+					<div class="btn-group" role="group" aria-label="Basic mixed styles example">
+					<button type="button" class="btn btn-success" onClick={this.handleSubmit} >Add</button>
+					<button type="button" class="btn btn-warning" onClick={console.log('edit')} >Edit</button>
+					<button type="button" class="btn btn-danger" onClick={console.log('delete')} >Delete</button>
+					</div>
+				</form>
 				);
 	}
 }
