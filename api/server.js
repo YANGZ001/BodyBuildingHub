@@ -43,11 +43,31 @@ async function getNextSequence(name) {
   return result.value.current;
 }
 
-function logValidate(log) {
+function idValidate(id) {
   const errors = [];
   if (errors.length > 0) {
     throw new UserInputError('Invalid input(s)', { errors });
   }
+}
+
+function logValidate(log) {
+  const errors = [];
+	if (log.reps <= 0) {
+		errors.push("Field reps must be a positive number");
+	}
+	if (log.number <= 0) {
+		errors.push("Field number must be a positive number");
+	}
+  if (errors.length > 0) {
+    throw new UserInputError('Invalid input(s)', { errors });
+  }
+}
+
+async function logDelete(_, { id }) {
+  idValidate(id);
+  const result = await db.collection('logs').deleteOne({'id': id});
+	if (result.deletedCount != 1) throw new UserInputError("Invalid input");
+  return result.deletedCount;
 }
 
 async function logAdd(_, { log }) {
@@ -75,6 +95,7 @@ const resolvers = {
   },
   Mutation: {
     logAdd,
+    logDelete,
   },
   GraphQLDate,
 };

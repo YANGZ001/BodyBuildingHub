@@ -17,19 +17,25 @@ db.logs.remove({});
 const initialLogsDB = [
 {
 id: 1, type: "Barbell Deadleft", 
-reps: "10", unit: "lb", 
+reps: 10,
+number: 10,
+unit: "lb", 
 note: "I feel good", 
 created: new Date("2018-08-15"),
 },
 {
 id: 2, type: "Pushup", 
-reps: "10", unit: "",
+reps: 10,
+number: 15,
+unit: "",
 note: "I can do more", 
 created: new Date("2022-04-01"),
 },
 {
 id: 3, type: "Pushup",
-reps: "15", unit: "",
+reps: 15,
+number: 20,
+unit: "",
 note: "Enough for today", 
 created: new Date("2022-04-01"),
 },
