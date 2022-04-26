@@ -9,6 +9,7 @@ function LogRow(props) {
 			<td>{log.id}</td>
 			<td>{log.type}</td>
 			<td>{log.reps}</td>
+			<td>{log.number}</td>
 			<td>{log.unit}</td>
 			<td>{log.note}</td>
 			<td>{log.created.toDateString()}</td>
@@ -30,6 +31,7 @@ export default function TrainLog(props) {
 						<th>ID</th>
 						<th>Type</th>
 						<th>Reps</th>
+						<th>Number</th>
 						<th>Unit</th>
 						<th>Note</th>
 						<th>Created Date</th>

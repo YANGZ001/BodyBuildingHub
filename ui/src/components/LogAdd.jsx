@@ -13,19 +13,22 @@ export default class LogAdd extends React.Component {
 		const log = {
 			type: form.type.value,
 			reps: form.reps.value,
+			number: form.number.value,
 			unit: form.unit.value,
 			note: form.note.value,
 		};
+		//console.log("number = " + number + " type = " + typeof number);
 		const { createLog } = this.props;
 		createLog(log);
 		form.type.value = ''; form.reps.value = '';
 		form.unit.value = ''; form.note.value = '';
+		form.number.value = '';
 	}
 
 	render() {
 		return (
-				<form name="logAdd" class="row g-3">
-					<div class="col-md-3 ">
+				<form name="logAdd" class="row g-3" onSubmit={this.handleSubmit}>
+					<div class="col-md-3">
 						<div class="col-auto">
 							<label for="type" class="col-form-label">Type</label>
 						</div>
@@ -34,16 +37,25 @@ export default class LogAdd extends React.Component {
 						</div>
 					</div>
 
-					<div class="col-md-3 ">
+					<div class="col-md-2 ">
 						<div class="col-auto">
-							<label for="type" class="col-form-label">Reps</label>
+							<label for="reps" class="col-form-label">Reps</label>
 						</div>
 						<div class="col-auto">
-						<input type="text" id="reps" class="form-control" aria-describedby="inputType"/>
+						<input type="number" id="reps" class="form-control" aria-describedby="inputType"/>
 						</div>
 					</div>
 
-					<div class="col-md-3 ">
+					<div class="col-md-2 ">
+						<div class="col-auto">
+							<label for="number" class="col-form-label">Number</label>
+						</div>
+						<div class="col-auto">
+						<input type="number" id="number" class="form-control" aria-describedby="inputType"/>
+						</div>
+					</div>
+
+					<div class="col-md-2 ">
 						<div class="col-auto">
 							<label for="type" class="col-form-label">Unit</label>
 						</div>
@@ -61,11 +73,7 @@ export default class LogAdd extends React.Component {
 						</div>
 					</div>
 
-					<div class="btn-group" role="group" aria-label="Basic mixed styles example">
-					<button type="button" class="btn btn-success" onClick={this.handleSubmit} >Add</button>
-					<button type="button" class="btn btn-warning" onClick={console.log('edit')} >Edit</button>
-					<button type="button" class="btn btn-danger" onClick={console.log('delete')} >Delete</button>
-					</div>
+					<button type="submit" class="btn btn-primary">Add</button>
 				</form>
 				);
 	}

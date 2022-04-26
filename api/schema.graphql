@@ -4,7 +4,8 @@ type Log {
   _id: ID!
   id: Int!
   type: String!
-	reps: String!
+	reps: Int!
+  number: Int!
   unit: String
   note: String
   created: GraphQLDate!
@@ -14,7 +15,8 @@ type Log {
 input LogInputs {
   type: String!
   "Optional, if not supplied, will be set to 'New'"
-  reps: String!
+  reps: Int!
+  number: Int!
   unit: String
   note: String
   created: GraphQLDate
@@ -28,5 +30,6 @@ type Query {
 
 type Mutation {
   logAdd(log: LogInputs!): Log!
+  logDelete(id: Int!): Int
 }
 
