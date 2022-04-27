@@ -73,7 +73,7 @@ export default class LogAdd extends React.Component {
 						</div>
 					</div>
 
-					<button type="submit" class="btn btn-primary">Add</button>
+					<button type="submit" class="btn btn-primary">Confirm</button>
 				</form>
 				);
 	}

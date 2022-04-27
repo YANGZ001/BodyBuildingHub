@@ -12,7 +12,7 @@ export default class Tracker extends React.Component {
 		super();
 		this.state = { 
 			logs: [],
-			display: -1,
+			display: 1,
 			};
 		this.createLog = this.createLog.bind(this);
 		this.deleteLog = this.deleteLog.bind(this);
@@ -69,11 +69,11 @@ export default class Tracker extends React.Component {
 		return (
 				<div>
 				This is a placeholder for Tracker component.
-				<Statistics />
+				<Statistics logs={this.state.logs}/>
 				<br />
-				<div class="btn-group" role="group" aria-label="Basic mixed styles example">
-				<button type="button" class="btn btn-success" onClick={()=>this.setDisplay(1)} >Add</button>
-				<button type="button" class="btn btn-danger" onClick={()=>this.setDisplay(3)} >Delete</button>
+				<div class="row justify-content-evenly">
+					<button type="button" class="btn btn-success col-4" onClick={()=>this.setDisplay(1)} >Add log</button>
+					<button type="button" class="btn btn-danger col-4" onClick={()=>this.setDisplay(3)} >Delete log</button>
 				</div>
 				{this.state.display == 1 && (<LogAdd createLog={this.createLog}/>)}
 				{this.state.display == 3 && (<LogDelete deleteLog={this.deleteLog}/>)}

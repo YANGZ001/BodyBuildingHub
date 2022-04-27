@@ -24,7 +24,7 @@ export default class LogDelete extends React.Component {
 						<span class="input-group-text" id="basic-addon1">id</span>
 						<input type='number' name="id" class="form-control" aria-label="id" aria-describedby="basic-addon1"/>
 					</div>
-					<button type="submit" class="btn btn-primary">Delete</button>
+					<button type="submit" class="btn btn-primary">Confirm</button>
 				</form>
 				);
 	}
