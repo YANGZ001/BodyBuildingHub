@@ -1,11 +1,14 @@
 /* eslint "react/prefer-stateless-function": "off" */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default class Statistics extends React.Component {
   render() {
     return (
-      <div>This is a placeholder for Statistics component.</div>
+      <div>
+				This is a placeholder for Statistics component.
+			</div>
     );
   }
 }
