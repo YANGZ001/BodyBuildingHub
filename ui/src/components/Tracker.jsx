@@ -69,7 +69,7 @@ export default class Tracker extends React.Component {
 		return (
 				<div>
 				This is a placeholder for Tracker component.
-				<Statistics />
+				<Statistics logs={this.state.logs}/>
 				<br />
 				<div class="row justify-content-evenly">
 					<button type="button" class="btn btn-success col-4" onClick={()=>this.setDisplay(1)} >Add log</button>
