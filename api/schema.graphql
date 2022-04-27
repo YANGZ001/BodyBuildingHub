@@ -4,10 +4,28 @@ type Log {
   _id: ID!
   id: Int!
   type: String!
-	reps: Int!
+  reps: Int!
   number: Int!
   unit: String
   note: String
+  created: GraphQLDate!
+}
+
+type Video {
+  _id: ID!
+  id: Int!
+  vId: String!
+  vName: String!
+  added: GraphQLDate!
+  vComments: [Comment]
+}
+
+type Comment {
+  cId: Int!
+  body: String!
+  username: String!
+  userId: Int!
+  parentId: Int
   created: GraphQLDate!
 }
 
@@ -26,10 +44,10 @@ input LogInputs {
 
 type Query {
   logList: [Log!]!
+  vidList(vType: String!): [Video!]!
 }
 
 type Mutation {
   logAdd(log: LogInputs!): Log!
   logDelete(id: Int!): Int
 }
-

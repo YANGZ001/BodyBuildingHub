@@ -12,7 +12,7 @@ export default class Train extends React.Component {
         <SearchBar />
 
         <br />
-        <VideoList />
+        <VideoList type="trainVids" />
         <br />
         <VideoDetail />
       </div>
