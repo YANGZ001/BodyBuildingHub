@@ -12,7 +12,7 @@ export default class Motivation extends React.Component {
         <SearchBar />
         This is a placeholder for Motivation component.
         <br />
-        <VideoList />
+        <VideoList type="motiVids" />
         <br />
         <VideoDetail />
       </div>
