@@ -10,7 +10,7 @@ export default class Diet extends React.Component {
     return (
       <div>
         <SearchBar />
-        This is a placeholder for Diet component.
+
         <br />
         <VideoList type="dietVids" />
         <br />
