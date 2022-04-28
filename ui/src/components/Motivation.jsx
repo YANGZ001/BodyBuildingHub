@@ -10,7 +10,7 @@ export default class Motivation extends React.Component {
     return (
       <div>
         <SearchBar />
-        This is a placeholder for Motivation component.
+
         <br />
         <VideoList type="motiVids" />
         <br />
