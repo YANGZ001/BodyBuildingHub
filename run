@@ -1,0 +1,43 @@
+#!/bin/bash
+
+# for DB
+cd api
+echo "api"
+if mongod &
+then
+	echo 'mongod success'
+else
+	echo 'mongod fail, try sudo'
+	sudo mongod &
+fi
+mongoexit=$?
+echo "Mongod exit code = $mongoexit"
+mongodPID=$!
+echo "Mongod pid = $mongodPID"
+export mongodPID
+
+# run api server
+npm install 
+echo "npm install exit code = $?"
+npm start &
+echo "npm start exit code = $?"
+apiPID=$!
+echo "API server pid = $apiPID"
+export apiPID
+
+# for ui
+cd ../ui
+echo "ui"
+npm install 
+echo "npm install exit code = $?"
+npm run compile 
+echo "npm run compile exit code = $?"
+npm start &
+echo "npm start exit code = $?"
+uiPID=$!
+echo "UI server pid = $uiPID"
+export uiPID
+
+cd ..
+mongo bbh api/script/init.mongo.js
+echo "Init DB exit code = $?"
