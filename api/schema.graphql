@@ -45,6 +45,7 @@ input LogInputs {
 type Query {
   logList: [Log!]!
   vidList(vType: String!): [Video!]!
+  searchDB(vType: String!, text: String!): [Video]!
 }
 
 type Mutation {

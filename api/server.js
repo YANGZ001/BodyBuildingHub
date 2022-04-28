@@ -92,6 +92,11 @@ async function vidList(_, { vType }) {
   return vids;
 }
 
+async function searchDB(_, { vType, text }) {
+  const vids = await db.collection(vType).find({ $text: {$search: text}}).toArray();
+  return vids;
+}
+
 async function connectToDb() {
   const client = new MongoClient(url, { useNewUrlParser: true });
   await client.connect();
@@ -103,6 +108,7 @@ const resolvers = {
   Query: {
     logList,
     vidList,
+    searchDB,
   },
   Mutation: {
     logAdd,

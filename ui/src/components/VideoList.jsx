@@ -2,14 +2,36 @@
 
 import React from "react";
 import graphQLFetch from "./graphQLFetch.js";
+import SearchBar from "./SearchBar.jsx";
 
 export default class VideoList extends React.Component {
   constructor() {
     super();
+		this.searchVids = this.searchVids.bind(this);
     this.state = {
       vids: [],
     };
   }
+
+	async searchVids(text) {
+		if (!text || text == null || text.length == 0) {
+			this.loadData();
+			return ;
+		}
+		console.log("text = " + text + " type  = " + typeof text)
+    const query = `query {
+      searchDB(vType:"${this.props.type}", text: "${text}") {
+        id vId vName added vComments {cId body username userId parentId created}
+      }
+    }`;
+		console.log("search Vids text = "+ text);
+		console.log("Search VIds query = "+ query);
+
+    const data = await graphQLFetch(query);
+    if (data) {
+      this.setState({ vids: data.searchDB });
+    }
+	}
 
   async loadData() {
     const query = `query {
@@ -31,6 +53,9 @@ export default class VideoList extends React.Component {
   render() {
     return (
       <div>
+        <SearchBar searchVids={this.searchVids}/>
+
+        <br />
         {/* <h3>{this.state.vids.map((vid) => vid.vName)}</h3> */}
         {this.state.vids.map((video) => {
           return (
