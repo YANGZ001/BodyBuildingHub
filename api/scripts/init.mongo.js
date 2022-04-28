@@ -250,3 +250,7 @@ db.dietVids.createIndex({ id: 1 }, { unique: true });
 db.dietVids.createIndex({ type: 1 });
 db.dietVids.createIndex({ note: 1 });
 db.dietVids.createIndex({ created: 1 });
+
+db.dietVids.createIndex( { vName: "text" } );
+db.motiVids.createIndex( { vName: "text" } );
+db.trainVids.createIndex( { vName: "text" } );
