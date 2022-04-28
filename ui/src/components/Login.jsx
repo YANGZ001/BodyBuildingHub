@@ -6,6 +6,9 @@ export class Login extends Component {
     console.log(response);
     console.log(response.profileObj);
   };
+  // if (!user) CreateUser : LoginUser
+  // CreateSession
+  // Logout button
   render() {
     return (
       <div>

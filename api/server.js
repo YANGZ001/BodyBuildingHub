@@ -5,6 +5,7 @@ const { ApolloServer, UserInputError } = require("apollo-server-express");
 const { GraphQLScalarType } = require("graphql");
 const { Kind } = require("graphql/language");
 const { MongoClient } = require("mongodb");
+const bcrypt = require("bcrypt");
 
 const url = process.env.DB_URL || "mongodb://localhost/bbh";
 
@@ -93,8 +94,29 @@ async function vidList(_, { vType }) {
 }
 
 async function searchDB(_, { vType, text }) {
-  const vids = await db.collection(vType).find({ $text: {$search: text}}).toArray();
+  const vids = await db
+    .collection(vType)
+    .find({ $text: { $search: text } })
+    .toArray();
   return vids;
+}
+
+// functions for User functionalities
+
+async function createUser(_, { user }) {
+  let newUser = Object.assign({}, user);
+  newUser.id = await getNextSequence("users");
+  newUser.created = new Date();
+  newUser.aType = "Google";
+  const salt = await bcrypt.genSalt(12);
+  const hashed = await bcrypt.hash(newUser.password, salt);
+  newUser.password = hashed;
+
+  const result = await db.collection("users").insertOne(newUser);
+  const savedUser = await db
+    .collection("users")
+    .findOne({ _id: result.insertedId });
+  return savedUser;
 }
 
 async function connectToDb() {
@@ -113,6 +135,7 @@ const resolvers = {
   Mutation: {
     logAdd,
     logDelete,
+    createUser,
   },
   GraphQLDate,
 };
