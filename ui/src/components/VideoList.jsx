@@ -1,85 +1,78 @@
 /* eslint "react/prefer-stateless-function": "off" */
 
 import React from "react";
-
-const dummyTrainVideoData = JSON.parse(`{
-  "kind": "youtube#playlistItemListResponse",
-  "etag": "G0vqK4rbE2B273HGISiYh78PGmY",
-  "nextPageToken": "EAAaBlBUOkNBVQ",
-  "items": [
-    {
-      "kind": "youtube#playlistItem",
-      "etag": "bGnxilU2Q0bGLEeBCxemBUUQfQQ",
-      "id": "UExSUzJERTRQMzlFYzBBdFU1Rm5kTkJTcFQ3UFhwcFpsNS4yODlGNEE0NkRGMEEzMEQy",
-      "contentDetails": {
-        "videoId": "lXwm62SiLQ8",
-        "videoPublishedAt": "2017-02-11T23:41:30Z"
-      }
-    },
-    {
-      "kind": "youtube#playlistItem",
-      "etag": "8bzNJU4kBGnAFpHPWJSG_rz__o8",
-      "id": "UExSUzJERTRQMzlFYzBBdFU1Rm5kTkJTcFQ3UFhwcFpsNS41NkI0NEY2RDEwNTU3Q0M2",
-      "contentDetails": {
-        "videoId": "jyFMBf-SrHs",
-        "videoPublishedAt": "2017-02-19T01:30:22Z"
-      }
-    },
-    {
-      "kind": "youtube#playlistItem",
-      "etag": "1Zni5i7wMWJq0iLo4n9Cr1Pq_FY",
-      "id": "UExSUzJERTRQMzlFYzBBdFU1Rm5kTkJTcFQ3UFhwcFpsNS4wMTcyMDhGQUE4NTIzM0Y5",
-      "contentDetails": {
-        "videoId": "x0f2sfsh7ns",
-        "videoPublishedAt": "2017-02-04T23:29:59Z"
-      }
-    },
-    {
-      "kind": "youtube#playlistItem",
-      "etag": "q2FALK9L63hNFxg59UOpUafiCUw",
-      "id": "UExSUzJERTRQMzlFYzBBdFU1Rm5kTkJTcFQ3UFhwcFpsNS41MjE1MkI0OTQ2QzJGNzNG",
-      "contentDetails": {
-        "videoId": "nK3BNozPEx4",
-        "videoPublishedAt": "2017-01-28T22:58:03Z"
-      }
-    },
-    {
-      "kind": "youtube#playlistItem",
-      "etag": "eKjzsMNRBwhMav3ePHihGuTOdMA",
-      "id": "UExSUzJERTRQMzlFYzBBdFU1Rm5kTkJTcFQ3UFhwcFpsNS4wOTA3OTZBNzVEMTUzOTMy",
-      "contentDetails": {
-        "videoId": "P01H0XpNpk0",
-        "videoPublishedAt": "2017-02-26T00:43:06Z"
-      }
-    }
-  ],
-  "pageInfo": {
-    "totalResults": 13,
-    "resultsPerPage": 5
-  }
-}`);
+import graphQLFetch from "./graphQLFetch.js";
+import SearchBar from "./SearchBar.jsx";
 
 export default class VideoList extends React.Component {
+  constructor() {
+    super();
+		this.searchVids = this.searchVids.bind(this);
+    this.state = {
+      vids: [],
+    };
+  }
+
+	async searchVids(text) {
+		if (!text || text == null || text.length == 0) {
+			this.loadData();
+			return ;
+		}
+		console.log("text = " + text + " type  = " + typeof text)
+    const query = `query {
+      searchDB(vType:"${this.props.type}", text: "${text}") {
+        id vId vName added vComments {cId body username userId parentId created}
+      }
+    }`;
+		console.log("search Vids text = "+ text);
+		console.log("Search VIds query = "+ query);
+
+    const data = await graphQLFetch(query);
+    if (data) {
+      this.setState({ vids: data.searchDB });
+    }
+	}
+
+  async loadData() {
+    const query = `query {
+      vidList(vType:"${this.props.type}") {
+        id vId vName added vComments {cId body username userId parentId created}
+      }
+    }`;
+
+    const data = await graphQLFetch(query);
+    if (data) {
+      this.setState({ vids: data.vidList });
+    }
+  }
+
+  componentDidMount() {
+    this.loadData();
+  }
+
   render() {
     return (
       <div>
-        {dummyTrainVideoData.items
-          .map((key) => key.contentDetails)
-          .map((key) => {
-            return (
-              <div className="video container">
-                <iframe
-                  width="800"
-                  height="450"
-                  src={`https://www.youtube.com/embed/${key.videoId}`}
-                  title="YouTube video player"
-                  frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen
-                ></iframe>
-              </div>
-            );
-          })}
+        <SearchBar searchVids={this.searchVids}/>
+
+        <br />
+        {/* <h3>{this.state.vids.map((vid) => vid.vName)}</h3> */}
+        {this.state.vids.map((video) => {
+          return (
+            <div className="video container">
+              <h2>{video.vName}</h2>
+              <iframe
+                width="800"
+                height="450"
+                src={`https://www.youtube.com/embed/${video.vId}`}
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              ></iframe>
+            </div>
+          );
+        })}
       </div>
     );
   }

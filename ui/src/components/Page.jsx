@@ -1,7 +1,7 @@
 import { func } from "prop-types";
 import React, { useState } from "react";
 import ShowTheLocation from "./ShowTheLocation.jsx";
-import { withRouter } from "react-router-dom";
+import Login from "./Login.jsx";
 
 import Contents from "./Contents.jsx";
 
@@ -63,6 +63,7 @@ function NavBar() {
           </a>
         );
       })}
+      <Login />
     </nav>
   );
 }
