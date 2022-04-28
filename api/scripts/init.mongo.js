@@ -251,6 +251,19 @@ db.dietVids.createIndex({ type: 1 });
 db.dietVids.createIndex({ note: 1 });
 db.dietVids.createIndex({ created: 1 });
 
-db.dietVids.createIndex( { vName: "text" } );
-db.motiVids.createIndex( { vName: "text" } );
-db.trainVids.createIndex( { vName: "text" } );
+db.dietVids.createIndex({ vName: "text" });
+db.motiVids.createIndex({ vName: "text" });
+db.trainVids.createIndex({ vName: "text" });
+
+// Initialise User Database
+
+db.users.remove({});
+const ucount = db.users.count();
+print("Inserted", ucount, "users");
+db.counters.remove({ _id: "users" });
+db.counters.insert({ _id: "users", current: ucount });
+
+db.users.createIndex({ id: 1 }, { unique: true });
+db.users.createIndex({ type: 1 });
+db.users.createIndex({ note: 1 });
+db.users.createIndex({ created: 1 });

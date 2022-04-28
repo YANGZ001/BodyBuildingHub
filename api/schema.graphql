@@ -29,6 +29,24 @@ type Comment {
   created: GraphQLDate!
 }
 
+type User {
+  _id: ID!
+  id: Int!
+  aType: String!
+  username: String!
+  password: String
+  firstname: String!
+  lastname: String!
+  created: GraphQLDate!
+}
+
+input UserInput {
+  username: String!
+  password: String!
+  firstname: String!
+  lastname: String!
+}
+
 "Toned down Issue, used as inputs, without server generated values."
 input LogInputs {
   type: String!
@@ -51,4 +69,5 @@ type Query {
 type Mutation {
   logAdd(log: LogInputs!): Log!
   logDelete(id: Int!): Int
+  createUser(user: UserInput!): User!
 }
