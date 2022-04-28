@@ -25,7 +25,6 @@ export default function TrainLog(props) {
 
 	return (
 			<div>
-			<p> This is a placeholder for TrainLog component. </p>
 			<table className="table table-striped table-hover">
 				<thead>
 					<tr>

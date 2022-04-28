@@ -68,7 +68,6 @@ export default class Tracker extends React.Component {
 	render() {
 		return (
 				<div>
-				This is a placeholder for Tracker component.
 				<Statistics logs={this.state.logs}/>
 				<br />
 				<div class="row justify-content-evenly">
