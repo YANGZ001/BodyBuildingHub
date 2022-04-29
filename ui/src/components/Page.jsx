@@ -1,10 +1,14 @@
 import { func } from "prop-types";
-import React from "react";
+
+import React, { useContext, useState, useMemo } from "react";
+import ShowTheLocation from "./ShowTheLocation.jsx";
+
 import Login from "./Login.jsx";
 
 import Contents from "./Contents.jsx";
 
 import "./Page.css";
+import { UserContext } from "./UserContext.jsx";
 
 function NavBar() {
 	const url = String(document.location);
@@ -72,15 +76,22 @@ function NavBar() {
 }
 
 export default function Page() {
+  const [user, setUser] = useState(null);
+  const providerValue = useMemo(() => ({ user, setUser }), [user, setUser]);
   return (
     <div>
       <div className="header container">
         <h1 className="title">Body-Building Hub</h1>
+
         <NavBar />
       </div>
       <div className="contents container">
         <center>
-          <Contents />
+
+          <UserContext.Provider value={providerValue}>
+            <Contents />
+          </UserContext.Provider>
+
         </center>
       </div>
     </div>
