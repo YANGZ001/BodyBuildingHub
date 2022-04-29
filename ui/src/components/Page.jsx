@@ -1,7 +1,6 @@
 import { func } from "prop-types";
 
 import React, { useContext, useState, useMemo } from "react";
-import ShowTheLocation from "./ShowTheLocation.jsx";
 
 import Login from "./Login.jsx";
 
@@ -11,10 +10,10 @@ import "./Page.css";
 import { UserContext } from "./UserContext.jsx";
 
 function NavBar() {
-	const url = String(document.location);
-	var strs = url.split("/");
-	const tag = '/#/' + strs[strs.length - 1];
-	//console.log("tag = " +  tag);
+  const url = String(document.location);
+  var strs = url.split("/");
+  const tag = "/#/" + strs[strs.length - 1];
+  //console.log("tag = " +  tag);
 
   const navData = [
     {
@@ -87,11 +86,9 @@ export default function Page() {
       </div>
       <div className="contents container">
         <center>
-
           <UserContext.Provider value={providerValue}>
             <Contents />
           </UserContext.Provider>
-
         </center>
       </div>
     </div>
