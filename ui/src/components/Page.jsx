@@ -1,6 +1,8 @@
 import { func } from "prop-types";
+
 import React, { useContext, useState, useMemo } from "react";
 import ShowTheLocation from "./ShowTheLocation.jsx";
+
 import Login from "./Login.jsx";
 
 import Contents from "./Contents.jsx";
@@ -9,7 +11,11 @@ import "./Page.css";
 import { UserContext } from "./UserContext.jsx";
 
 function NavBar() {
-  const [activePage, setActivePage] = useState(1);
+	const url = String(document.location);
+	var strs = url.split("/");
+	const tag = '/#/' + strs[strs.length - 1];
+	//console.log("tag = " +  tag);
+
   const navData = [
     {
       title: "Home",
@@ -48,15 +54,15 @@ function NavBar() {
       ref: "/#/setting",
     },
   ];
+
   return (
     <nav>
       {navData.map((val, key) => {
         return (
           <a
             className="NavItem"
-            id={activePage == val.link ? "active" : ""}
+            id={val.ref == tag ? "active" : ""}
             href={val.ref}
-            onClick={() => setActivePage(val.link)}
           >
             {" "}
             <div id="navIcon">{val.icon}</div>{" "}
@@ -81,10 +87,11 @@ export default function Page() {
       </div>
       <div className="contents container">
         <center>
+
           <UserContext.Provider value={providerValue}>
-            <ShowTheLocation />
             <Contents />
           </UserContext.Provider>
+
         </center>
       </div>
     </div>

@@ -17,7 +17,6 @@ export default function Statistics(props) {
 
 	return (
       <div class="container">
-				This is a placeholder for Statistics component.
 				<div class="row">
 					<div class="badge bg-primary text-wrap col" style={{"width": "6rem",}}>
 						<p class="font-monospace">You have <span class="fs-2">{logs.length}</span> logs</p>
