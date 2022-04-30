@@ -8,12 +8,12 @@ import Contents from "./Contents.jsx";
 
 import "./Page.css";
 import { UserContext } from "./UserContext.jsx";
+import { loginBBH } from "../utils/loginBBH.jsx";
 
 function NavBar() {
   const url = String(document.location);
   var strs = url.split("/");
   const tag = "/#/" + strs[strs.length - 1];
-  //console.log("tag = " +  tag);
 
   const navData = [
     {
@@ -69,7 +69,6 @@ function NavBar() {
           </a>
         );
       })}
-      <Login />
     </nav>
   );
 }
@@ -79,18 +78,37 @@ export default function Page() {
   const providerValue = useMemo(() => ({ user, setUser }), [user, setUser]);
   return (
     <div>
-      <div className="header container">
-        <h1 className="title">Body-Building Hub</h1>
-
-        <NavBar />
-      </div>
-      <div className="contents container">
-        <center>
-          <UserContext.Provider value={providerValue}>
-            <Contents />
-          </UserContext.Provider>
-        </center>
-      </div>
+      <UserContext.Provider value={providerValue}>
+        <div className="header container">
+          <h1 className="title">Body-Building Hub</h1>
+          <NavBar />
+          <Login />
+          <pre>{JSON.stringify(user, null, 2)}</pre>
+          {user ? (
+            <button
+              class="ui button"
+              onClick={() => {
+                // call logout to server OR cheat:
+                setUser(null);
+              }}
+            >
+              Logout
+            </button>
+          ) : (
+            <button
+              onClick={async () => {
+                const user = await loginBBH();
+                setUser(user);
+              }}
+            >
+              Login
+            </button>
+          )}
+        </div>
+        <div className="contents container">
+          <center>{user ? <Contents /> : <h3>Please Log In</h3>}</center>
+        </div>
+      </UserContext.Provider>
     </div>
   );
 }
