@@ -1,5 +1,3 @@
-import { func } from "prop-types";
-
 import React, { useContext, useState, useMemo } from "react";
 
 import Login from "./Login.jsx";
@@ -8,7 +6,6 @@ import Contents from "./Contents.jsx";
 
 import "./Page.css";
 import { UserContext } from "./UserContext.jsx";
-import { loginBBH } from "../utils/loginBBH.jsx";
 
 function NavBar() {
   const url = String(document.location);
@@ -62,6 +59,7 @@ function NavBar() {
             className="NavItem"
             id={val.ref == tag ? "active" : ""}
             href={val.ref}
+            key={val.link}
           >
             {" "}
             <div id="navIcon">{val.icon}</div>{" "}
@@ -82,31 +80,23 @@ export default function Page() {
         <div className="header container">
           <h1 className="title">Body-Building Hub</h1>
           <NavBar />
-          <Login />
-          <pre>{JSON.stringify(user, null, 2)}</pre>
           {user ? (
             <button
-              class="ui button"
+              className="ui button"
               onClick={() => {
-                // call logout to server OR cheat:
                 setUser(null);
               }}
             >
               Logout
             </button>
           ) : (
-            <button
-              onClick={async () => {
-                const user = await loginBBH();
-                setUser(user);
-              }}
-            >
-              Login
-            </button>
+            <Login />
           )}
         </div>
         <div className="contents container">
-          <center>{user ? <Contents /> : <h3>Please Log In</h3>}</center>
+          <center>
+            {user ? <Contents /> : <h3>Please Log In to view Contents</h3>}
+          </center>
         </div>
       </UserContext.Provider>
     </div>

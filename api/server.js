@@ -119,6 +119,29 @@ async function createUser(_, { user }) {
   return savedUser;
 }
 
+async function searchUser(_, { username }) {
+  const result = await db.collection("users").findOne({ username: username });
+  return result;
+}
+
+async function loginUser(_, { username, password }) {
+  const stored = await db.collection("users").findOne({ username: username });
+  const validPassword = await bcrypt
+    .compare(password, stored.password)
+    .then((res) => {
+      if (res) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+  if (validPassword) {
+    return stored;
+  } else {
+    return null;
+  }
+}
+
 async function connectToDb() {
   const client = new MongoClient(url, { useNewUrlParser: true });
   await client.connect();
@@ -131,6 +154,8 @@ const resolvers = {
     logList,
     vidList,
     searchDB,
+    searchUser,
+    loginUser,
   },
   Mutation: {
     logAdd,
