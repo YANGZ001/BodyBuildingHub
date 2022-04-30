@@ -64,6 +64,8 @@ type Query {
   logList: [Log!]!
   vidList(vType: String!): [Video!]!
   searchDB(vType: String!, text: String!): [Video]!
+  searchUser(username: String!): User
+  loginUser(username: String!, password: String!): User
 }
 
 type Mutation {
