@@ -8,6 +8,11 @@ export default function Login() {
   const responseGoogle = async (response) => {
     const newLogin = await loginBBH(response.profileObj);
     setUser(newLogin);
+		/* Session Control */
+		if (newLogin) {
+			console.log("Add user to Session");
+			sessionStorage.setItem('trace', JSON.stringify(newLogin));
+		}
   };
 
   return (
