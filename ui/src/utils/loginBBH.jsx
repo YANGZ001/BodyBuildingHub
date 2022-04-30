@@ -3,7 +3,7 @@ import graphQLFetch from "../components/graphQLFetch.js";
 import { createUser } from "./createUser.jsx";
 
 export const loginBBH = async (profileObj) => {
-  const userExists = await checkUserExists("fwd370@gmail.com").then((res) => {
+  const userExists = await checkUserExists(profileObj.email).then((res) => {
     if (res) {
       return true;
     } else {

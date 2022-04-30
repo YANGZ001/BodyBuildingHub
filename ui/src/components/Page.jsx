@@ -72,8 +72,17 @@ function NavBar() {
 }
 
 export default function Page() {
-  const [user, setUser] = useState(null);
+	/* Session Control */
+  const [user, setUser] = useState(() => {
+			let data = sessionStorage.getItem('trace');
+			if (data) {
+				console.log("get user = " + data);
+				return JSON.parse(data);
+			}
+			else return null;
+		});
   const providerValue = useMemo(() => ({ user, setUser }), [user, setUser]);
+
   return (
     <div>
       <UserContext.Provider value={providerValue}>
@@ -85,6 +94,8 @@ export default function Page() {
               className="ui button"
               onClick={() => {
                 setUser(null);
+								sessionStorage.removeItem('trace');
+								console.log("remove session");
               }}
             >
               Logout
