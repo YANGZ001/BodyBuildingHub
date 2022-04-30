@@ -1,11 +1,10 @@
 import React, { useContext, useState, useMemo } from "react";
-
 import Login from "./Login.jsx";
-
 import Contents from "./Contents.jsx";
-
 import "./Page.css";
 import { UserContext } from "./UserContext.jsx";
+
+/* The root page. It contains a Navigation Bar and Contents. If the user is not logged in, the contents will be hide. */
 
 function NavBar() {
   const url = String(document.location);
@@ -42,12 +41,6 @@ function NavBar() {
       icon: <i className="clipboard icon" />,
       link: 5,
       ref: "/#/tracker",
-    },
-    {
-      title: "Setting",
-      icon: <i className="cog icon" />,
-      link: 6,
-      ref: "/#/setting",
     },
   ];
 
@@ -98,6 +91,7 @@ export default function Page() {
 								console.log("remove session");
               }}
             >
+						<p>{user.lastname + " " + user.firstname}</p> 
               Logout
             </button>
           ) : (

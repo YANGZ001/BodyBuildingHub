@@ -1,7 +1,7 @@
 {
-	"name": "pro-mern-stack-2-ui",
+	"name": "Bodybuilding-Hub",
 	"version": "1.0.0",
-	"description": "Pro MERN Stack (2nd Edition) - UI",
+	"description": "Body building hub - UI. Project for IT5007 at NUS.",
 	"main": "index.js",
 	"scripts": {
 		"#start": "UI server. HMR is enabled in dev mode.",
@@ -15,11 +15,11 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/vasansr/pro-mern-stack-2.git"
+		"url": "git+https://github.com/YANGZ001/BodyBuildingHub.git"
 	},
-	"author": "vasan.promern@gmail.com",
-	"license": "ISC",
-	"homepage": "https://github.com/vasansr/pro-mern-stack-2",
+	"author": "zyfunnyyoung@gmail.com and fwd1@berkeley.edu",
+	"license": "MIT",
+	"homepage": "http://app.bbhub.link/#/home",
 	"dependencies": {
 		"babel-polyfill": "^6.26.0",
 		"bcrypt": "^5.0.1",

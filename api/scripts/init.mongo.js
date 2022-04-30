@@ -1,18 +1,8 @@
-/*
- * Run using the mongo shell. For remote databases, ensure that the
- * connection string is supplied in the command line. For example:
- * localhost:
- *   mongo issuetracker scripts/init.mongo.js
- * Atlas:
- *   mongo mongodb+srv://user:pwd@xxx.mongodb.net/issuetracker scripts/init.mongo.js
- * MLab:
- *   mongo mongodb://user:pwd@xxx.mlab.com:33533/issuetracker scripts/init.mongo.js
- */
 
 /* global db print */
 /* eslint no-restricted-globals: "off" */
 
-// Initialise DB for Tracker Logs
+/* Initialise DB for Tracker Logs */
 db.logs.remove({});
 
 const initialLogsDB = [
@@ -57,7 +47,7 @@ db.logs.createIndex({ type: 1 });
 db.logs.createIndex({ note: 1 });
 db.logs.createIndex({ created: 1 });
 
-// Initialise DB for Train Video List
+/* Initialise DB for Train Video List */
 
 db.trainVids.remove({});
 
@@ -128,7 +118,7 @@ db.trainVids.createIndex({ type: 1 });
 db.trainVids.createIndex({ note: 1 });
 db.trainVids.createIndex({ created: 1 });
 
-// Initialise DB for Motivation Video List
+/* Initialise DB for Motivation Video List */
 
 db.motiVids.remove({});
 
@@ -185,7 +175,7 @@ db.motiVids.createIndex({ type: 1 });
 db.motiVids.createIndex({ note: 1 });
 db.motiVids.createIndex({ created: 1 });
 
-// Initialise DB for Motivation Video List
+/* Initialise DB for Motivation Video List */
 
 db.dietVids.remove({});
 
@@ -255,7 +245,7 @@ db.dietVids.createIndex({ vName: "text" });
 db.motiVids.createIndex({ vName: "text" });
 db.trainVids.createIndex({ vName: "text" });
 
-// Initialise User Database
+/* Initialise User Database */
 
 db.users.remove({});
 const ucount = db.users.count();

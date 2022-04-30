@@ -4,6 +4,8 @@ import React from "react";
 import graphQLFetch from "./graphQLFetch.js";
 import SearchBar from "./SearchBar.jsx";
 
+/* A component to display video lists. And also send search queries about videos to Backend. */
+
 export default class VideoList extends React.Component {
   constructor() {
     super();
@@ -18,14 +20,11 @@ export default class VideoList extends React.Component {
       this.loadData();
       return;
     }
-    console.log("text = " + text + " type  = " + typeof text);
     const query = `query {
       searchDB(vType:"${this.props.type}", text: "${text}") {
         id vId vName added vComments {cId body username userId parentId created}
       }
     }`;
-    console.log("search Vids text = " + text);
-    console.log("Search VIds query = " + query);
 
     const data = await graphQLFetch(query);
     if (data) {

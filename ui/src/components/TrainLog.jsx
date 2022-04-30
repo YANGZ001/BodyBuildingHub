@@ -3,6 +3,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+/* TrainLog component to add/delete a log and disply */
+
 function LogRow(props) {
 	const log = props.log;
 	return (

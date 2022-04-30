@@ -4,6 +4,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./SearchBar.css";
 
+/* Search Bar function definition. Search query will go to MongoDB backend. Note that the search is case-sensitive and common stop words will be ignored. */
+
 export default class SearchBar extends React.Component {
   constructor() {
     super();

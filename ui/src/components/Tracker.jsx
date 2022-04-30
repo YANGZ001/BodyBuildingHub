@@ -7,6 +7,8 @@ import graphQLFetch from "./graphQLFetch.js";
 import LogAdd from "./LogAdd.jsx";
 import LogDelete from "./LogDelete.jsx";
 
+/* Trancker Page. Use this page to track user's training. */
+
 export default class Tracker extends React.Component {
   constructor() {
     super();
@@ -40,7 +42,6 @@ export default class Tracker extends React.Component {
     const query = `mutation logDelete($id: Int!) {
 			logDelete(id: $id)
 		}`;
-    console.log("sent deletelog id = " + id);
 
     const data = await graphQLFetch(query, { id });
     if (data) {
