@@ -47,7 +47,6 @@ input UserInput {
   lastname: String!
 }
 
-"Toned down Issue, used as inputs, without server generated values."
 input LogInputs {
   type: String!
   "Optional, if not supplied, will be set to 'New'"

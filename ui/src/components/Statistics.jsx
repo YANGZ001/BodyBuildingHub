@@ -3,6 +3,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+/* Statistics component, is designed to display statistics infomation about train logs. */
+
 export default function Statistics(props) {
   const logs = props.logs;
   const uniqueDays = new Set(

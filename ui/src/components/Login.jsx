@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import GoogleLogin from "react-google-login";
 import { loginBBH } from "../utils/loginBBH.jsx";
 import { UserContext } from "./UserContext.jsx";
+/* Login function defination */
 
 export default function Login() {
   const { user, setUser } = useContext(UserContext);
@@ -10,7 +11,6 @@ export default function Login() {
     setUser(newLogin);
 		/* Session Control */
 		if (newLogin) {
-			console.log("Add user to Session");
 			sessionStorage.setItem('trace', JSON.stringify(newLogin));
 		}
   };

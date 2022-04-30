@@ -1,5 +1,7 @@
 /* eslint "no-alert": "off" */
 
+/* A pre-defined helper funtion to sent graphql query to backend. This funtion is taken from Pro-mern Stack. https://github.com/vasansr/pro-mern-stack-2/blob/11.03-navigation-bar/ui/src/graphQLFetch.js */
+
 const dateRegex = new RegExp('^\\d\\d\\d\\d-\\d\\d-\\d\\d');
 
 function jsonDateReviver(key, value) {

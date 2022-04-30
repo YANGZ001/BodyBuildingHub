@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+/* Add a log function definition. */
 
 export default class LogAdd extends React.Component {
   constructor() {

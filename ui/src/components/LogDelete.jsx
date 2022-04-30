@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+/* Delete a log function defination. */
 
 export default class LogDelete extends React.Component {
 	constructor() {
@@ -11,10 +12,8 @@ export default class LogDelete extends React.Component {
 		e.preventDefault();
 		const form = document.forms.logDelete;
 		const id = form.id.value;
-		console.log("Id = " + id + " type = " + typeof id);
 		const { deleteLog } = this.props;
 		deleteLog(id);
-		//form.id.value = '';
 	}
 
 	render() {
