@@ -12,7 +12,7 @@ echo "Mongod pid = $mongodPID"
 # run api server
 npm install 
 echo "npm install exit code = $?"
-sudo npm start &
+npm start &
 echo "npm start exit code = $?"
 apiPID=$!
 echo "API server pid = $apiPID"
@@ -24,11 +24,11 @@ npm install
 echo "npm install exit code = $?"
 npm run compile 
 echo "npm run compile exit code = $?"
-sudo npm start &
+npm start &
 echo "npm start exit code = $?"
 uiPID=$!
 echo "UI server pid = $uiPID"
 
 cd ..
-sudo mongo bbh api/script/init.mongo.js
+mongo bbh ./api/scripts/init.mongo.js
 echo "Init DB exit code = $?"
