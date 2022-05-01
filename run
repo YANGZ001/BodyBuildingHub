@@ -14,7 +14,6 @@ mongoexit=$?
 echo "Mongod exit code = $mongoexit"
 mongodPID=$!
 echo "Mongod pid = $mongodPID"
-export mongodPID
 
 # run api server
 npm install 
@@ -23,7 +22,6 @@ npm start &
 echo "npm start exit code = $?"
 apiPID=$!
 echo "API server pid = $apiPID"
-export apiPID
 
 # for ui
 cd ../ui
@@ -36,8 +34,7 @@ npm start &
 echo "npm start exit code = $?"
 uiPID=$!
 echo "UI server pid = $uiPID"
-export uiPID
 
 cd ..
-mongo bbh api/script/init.mongo.js
+mongo bbh api/scripts/init.mongo.js
 echo "Init DB exit code = $?"
