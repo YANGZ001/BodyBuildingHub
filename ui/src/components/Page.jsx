@@ -67,12 +67,19 @@ function NavBar() {
 export default function Page() {
 	/* Session Control */
   const [user, setUser] = useState(() => {
-			let data = sessionStorage.getItem('trace');
+			/* let data = sessionStorage.getItem('trace');
 			if (data) {
 				console.log("get user = " + data);
 				return JSON.parse(data);
 			}
 			else return null;
+			*/
+			return {
+				  "id": 2,
+					"username": "zyfunnyyoung@gmail.com",
+					"firstname": "Yang",
+					"lastname": "Zhang"
+			};
 		});
   const providerValue = useMemo(() => ({ user, setUser }), [user, setUser]);
 
